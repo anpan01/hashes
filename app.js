@@ -1,11 +1,22 @@
 //function ready
 $(function() {
-//on click "send" 
-//take value from each form input
-//append them to the url like: index.html/#values
+  var url = window.location.href.toString();
+  console.log(window.location.href);
+  var values = [];
 
-//var url = window.location.href;
-//console.log(url);
+  for (i = 0; i < url.length; i ++){
+    if (url.includes('?')) {
+      var exp = RegExp(/\?\w+\=(\w+|)/);
+      var valArray = exp.exec(url);
+      
+      values.push(valArray[1]);
+    }
+  }
+
+  console.log(values);
 
 
+  $('#test').on('click', function() {
+    window.location.href += "?pet_name=" + $('#pet_name').val() + "?type=" + $('#type').prop('checked')  + "?age=" + $('#age').val(); 
+  });
 });
