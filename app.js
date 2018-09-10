@@ -1,19 +1,16 @@
 //function ready
 $(function() {
-  var url = window.location.href.toString();
+  var urlwin = window.location.href.toString();
   console.log(window.location.href);
-  var values = [];
-
-  for (i = 0; i < url.length; i ++){
-    if (url.includes('?')) {
-      var exp = RegExp(/\?\w+\=(\w+|)/);
-      var valArray = exp.exec(url);
-      
-      values.push(valArray[1]);
-    }
+  var exp = RegExp(/\?\w+\=(\w+|)/, 'g');
+  var values;
+  var valArray = [];
+  while((values = exp.exec(urlwin)) != null) {
+    console.log(values)
+    valArray.push(values[1]);
   }
 
-  console.log(values);
+  console.log(valArray);
 
 
   $('#test').on('click', function() {
